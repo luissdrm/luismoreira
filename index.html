@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Luís Moreira, portfolio</title>
+  <meta name="description" content="2D illustrations, backgrounds, sketches, and Blender tests by Luís Moreira.">
+  <meta name="theme-color" content="#FFFFFF">
+
+  <!-- Link preview (WhatsApp, social networks) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Luís Moreira, portfolio">
+  <meta property="og:description" content="2D illustrations, backgrounds, sketches, and Blender tests.">
+
+  <!-- Ícone da aba do navegador: troque o arquivo assets/favicon.png pelo seu (mantenha o nome) -->
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/favicon.png">
+  <!-- Fonte arredondada (Nunito, Google Fonts). Se o carregamento falhar, o navegador usa uma fonte arredondada do sistema. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700;800&family=Inter:wght@900&display=swap">
+  <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+  <a class="pular" href="#obras">Skip to the works</a>
+
+  <div class="pagina">
+    <header class="lateral">
+      <h1 class="nome" id="nome">Luís Moreira</h1>
+      <p class="apresentacao" id="apresentacao"></p>
+
+      <nav class="menu" aria-label="Main navigation">
+        <div class="filtros" id="filtros" role="group" aria-label="Filter works by category"></div>
+        <button type="button" class="link-about" id="link-about" aria-pressed="false">About</button>
+      </nav>
+
+      <ul class="redes" id="redes"></ul>
+    </header>
+
+    <main id="obras" tabindex="-1">
+      <p class="so-leitor" id="status" role="status"></p>
+      <ul class="grade" id="grade"></ul>
+      <noscript><p class="aviso-js">This portfolio needs JavaScript to display the works. Turn on JavaScript in your browser and reload the page.</p></noscript>
+
+      <section class="about" id="about" aria-labelledby="about-titulo" hidden>
+        <h2 id="about-titulo">About</h2>
+        <div class="texto" id="about-texto"></div>
+      </section>
+    </main>
+  </div>
+
+  <dialog class="visualizador" id="visualizador" aria-label="Work viewer">
+    <div class="v-topo">
+      <span class="v-contador" id="v-contador" aria-live="polite"></span>
+      <button type="button" class="v-botao" id="v-fechar" aria-label="Close"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></button>
+    </div>
+
+    <div class="v-palco" id="v-palco">
+      <button type="button" class="v-nav v-ant" id="v-ant" aria-label="Previous work">
+        <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="M15 4 7 12l8 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="v-midia" id="v-midia"></div>
+      <button type="button" class="v-nav v-prox" id="v-prox" aria-label="Next work">
+        <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path d="m9 4 8 8-8 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+
+    <div class="v-legenda">
+      <h2 id="v-titulo"></h2>
+      <p class="v-detalhe" id="v-detalhe"></p>
+      <p class="v-descricao" id="v-descricao"></p>
+    </div>
+  </dialog>
+
+  <script src="js/config.js"></script>
+  <script src="js/galeria.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

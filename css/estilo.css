@@ -1,0 +1,226 @@
+/* ---------- Cores, tipografia e medidas (edite aqui para mudar o visual) ---------- */
+:root {
+  --parede: #FFFFFF;      /* fundo da página */
+  --tinta: #000000;       /* texto principal */
+  --suave: #6B6B6B;       /* texto secundário e abas inativas */
+  --linha: #D4D4D4;       /* filetes e divisões */
+  --vazio: #EFEFEF;       /* cor de espera enquanto a imagem carrega */
+  --azul: #000000;        /* cor de destaque (foco e abas); troque por uma cor se quiser */
+
+  --fonte: "Nunito", ui-rounded, "SF Pro Rounded", "Varela Round", system-ui, sans-serif;
+  --margem: clamp(1.25rem, 4vw, 3.5rem);
+  --largura-max: 104rem;
+}
+
+/* Respeita as barras do sistema em celulares */
+:root { box-sizing: border-box; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+
+body {
+  margin: 0;
+  background: var(--parede);
+  color: var(--tinta);
+  font-family: var(--fonte);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.travado { overflow: hidden; }
+
+[hidden] { display: none !important; }
+
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+a:hover { color: var(--azul); }
+
+:focus-visible { outline: 3px solid var(--azul); outline-offset: 4px; }
+
+.so-leitor {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.pular {
+  position: absolute; left: var(--margem); top: -4rem; z-index: 20;
+  background: var(--tinta); color: var(--parede); padding: 0.6rem 1rem; text-decoration: none;
+}
+.pular:focus { top: 0.75rem; }
+
+
+/* ---------- Estrutura: lateral à esquerda, ilustrações à direita ---------- */
+.pagina {
+  display: grid;
+  grid-template-columns: clamp(15rem, 20vw, 19rem) minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.lateral {
+  position: sticky; top: 0; align-self: start;
+  height: 100vh; height: 100dvh; overflow-y: auto;
+  padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.25rem, 2.2vw, 2rem);
+}
+
+.nome {
+  margin: 0;
+  /* Só o nome usa uma fonte mais reta (Inter), bem grossa; o resto do site segue a fonte arredondada */
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 900;
+  -webkit-text-stroke: 0.02em var(--tinta);
+  font-size: clamp(2.6rem, 4vw, 3.4rem);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  overflow-wrap: anywhere;
+}
+
+.apresentacao {
+  margin: 0.8rem 0 0;
+  font-size: 0.95rem; font-weight: 600; line-height: 1.35;
+  color: var(--tinta);
+}
+
+/* Abas */
+.menu { margin-top: 2.5rem; }
+
+.filtros { display: flex; flex-direction: column; align-items: flex-start; gap: 0.15rem; }
+
+.filtro {
+  appearance: none; background: none; border: 0; margin: 0; padding: 0.3rem 0;
+  font: inherit; font-size: 1.05rem; font-weight: 700; text-align: left;
+  color: var(--suave); cursor: pointer;
+}
+.filtro:hover { color: var(--tinta); }
+.filtro[aria-pressed="true"] { color: var(--tinta); }
+
+.link-about {
+  appearance: none; background: none; border: 0; margin: 1.4rem 0 0; padding: 0.3rem 0;
+  font: inherit; font-size: 1.05rem; font-weight: 700; text-align: left;
+  color: var(--suave); cursor: pointer;
+}
+.link-about:hover, .link-about[aria-pressed="true"] { color: var(--tinta); }
+
+/* Ícones de redes sociais */
+.redes { list-style: none; margin: 0.55rem 0 0; padding: 0; display: flex; gap: 0.6rem; }
+.redes a {
+  display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border-radius: 50%;
+  background: var(--tinta); color: var(--parede);
+}
+.redes svg { width: 1.1rem; height: 1.1rem; }
+.redes a:hover { opacity: 0.7; }
+
+/* ---------- Grade de obras (colunas que respeitam a proporção de cada obra) ---------- */
+main { padding: 0.5rem; }
+main:focus { outline: none; }
+
+.grade { list-style: none; margin: 0; padding: 0; column-count: 1; column-gap: 0.5rem; }
+@media (min-width: 40rem) { .grade { column-count: 2; } }
+@media (min-width: 78rem) { .grade { column-count: 3; } }
+@media (min-width: 110rem) { .grade { column-count: 4; } }
+
+.item { break-inside: avoid; margin: 0 0 0.5rem; }
+
+.abrir {
+  display: block; width: 100%; margin: 0; padding: 0; border: 0; background: none;
+  cursor: zoom-in;
+}
+.abrir:hover img { opacity: 0.88; }
+
+.midia { position: relative; display: block; background: var(--vazio); overflow: hidden; }
+.midia img { display: block; width: 100%; height: auto; transition: opacity 0.15s; }
+
+/* Imagens: não selecionar, não arrastar, sem menu de "salvar" no toque longo */
+img { -webkit-user-drag: none; user-select: none; -webkit-touch-callout: none; }
+
+.midia.falhou { min-height: 10rem; display: grid; place-items: center; padding: 1rem; }
+.midia.falhou img { display: none; }
+.aviso-arquivo { font-size: 0.85rem; line-height: 1.4; color: var(--suave); overflow-wrap: anywhere; text-align: center; }
+
+/* Único movimento da página: as obras aparecem suavemente depois de trocar de aba */
+.grade.anima .item { animation: aparecer 0.28s ease-out both; }
+@keyframes aparecer { from { opacity: 0; } to { opacity: 1; } }
+
+.aviso-js { max-width: 36rem; color: var(--suave); }
+
+/* ---------- About ---------- */
+.about { max-width: 40rem; padding: clamp(1rem, 2.5vw, 1.75rem) clamp(0.5rem, 2vw, 2rem) 3rem; }
+.about h2 { margin: 0 0 0.75rem; font-size: 1.05rem; font-weight: 700; }
+.about .texto { font-size: 1.1rem; font-weight: 600; line-height: 1.6; }
+.about .texto p { margin: 0 0 1em; }
+.about .texto p:last-child { margin-bottom: 0; }
+
+/* ---------- Celular e telas estreitas: a lateral vira cabeçalho ---------- */
+@media (max-width: 52rem) {
+  .pagina { display: block; }
+  .lateral { position: static; height: auto; overflow: visible; padding: 1.5rem 1.25rem 1rem; }
+  .nome { font-size: 3rem; }
+  .menu { margin-top: 1.5rem; }
+  .filtros { flex-direction: row; flex-wrap: wrap; column-gap: 1.25rem; }
+  .link-about { margin-top: 0.75rem; }
+  .redes { margin-top: 0.5rem; }
+}
+
+/* ---------- Visualizador (janela ampliada) ---------- */
+.visualizador {
+  width: 100vw; height: 100vh; height: 100dvh; max-width: none; max-height: none;
+  margin: 0; padding: 0; border: 0;
+  background: rgba(255, 255, 255, 0.98); color: var(--tinta);
+  font-family: var(--fonte);
+}
+.visualizador[open] { display: grid; grid-template-rows: auto minmax(0, 1fr) auto; }
+.visualizador::backdrop { background: rgba(255, 255, 255, 0.98); }
+
+.v-topo { display: flex; justify-content: space-between; align-items: center; padding: 1rem var(--margem) 0.5rem; }
+.v-contador { font-size: 0.9rem; font-variant-numeric: tabular-nums; font-weight: 600; color: var(--suave); }
+
+.v-botao {
+  appearance: none; background: none; color: inherit; border: 0; border-radius: 50%;
+  display: grid; place-items: center; width: 2.75rem; height: 2.75rem; padding: 0; cursor: pointer;
+}
+.v-botao:hover { background: rgba(0, 0, 0, 0.08); }
+
+.v-palco {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center;
+  grid-template-rows: minmax(0, 1fr);
+  column-gap: 0.5rem; min-height: 0; padding: 0 clamp(0.5rem, 2vw, 1.5rem);
+  touch-action: pan-y;
+}
+
+.v-midia { position: relative; height: 100%; min-height: 0; min-width: 0; }
+.v-midia > * { position: absolute; inset: 0; width: 100%; height: 100%; }
+.v-midia img, .v-midia video { object-fit: contain; }
+.v-midia .aviso-arquivo { display: grid; place-content: center; font-size: 1rem; }
+
+.v-nav {
+  appearance: none; background: none; border: 0; color: inherit; cursor: pointer;
+  display: grid; place-items: center; width: 3.25rem; height: 3.25rem; border-radius: 50%;
+}
+.v-nav:hover { background: rgba(0, 0, 0, 0.08); }
+.visualizador.unica .v-nav { visibility: hidden; }
+
+.v-legenda { padding: 0.75rem var(--margem) 1.25rem; max-height: 32dvh; overflow-y: auto; }
+.v-legenda h2 { margin: 0; font-size: 1.2rem; font-weight: 700; line-height: 1.3; }
+.v-detalhe { margin: 0.15rem 0 0; font-size: 0.95rem; font-weight: 500; color: var(--suave); }
+.v-descricao { margin: 0.6rem 0 0; max-width: 60ch; font-size: 0.95rem; line-height: 1.55; }
+.v-detalhe:empty, .v-descricao:empty, .v-legenda h2:empty { display: none; }
+
+@media (max-width: 40rem) {
+  .v-palco { grid-template-columns: minmax(0, 1fr); position: relative; }
+  .v-midia { grid-area: 1 / 1; }
+  .v-nav {
+    grid-area: 1 / 1; z-index: 1; width: 2.75rem; height: 2.75rem;
+    background: rgba(255, 255, 255, 0.75);
+  }
+  .v-ant { justify-self: start; }
+  .v-prox { justify-self: end; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .grade.anima .item { animation: none; }
+}
+
+/* Cobre a área da barra do sistema quando o menu está fixo */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); background: var(--parede); z-index: 11; }
