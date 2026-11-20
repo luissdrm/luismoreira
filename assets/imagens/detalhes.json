@@ -1,6 +1,7 @@
 {
   "3d-illustration/01-blocks.svg": {"titulo": "Blocks", "ano": 2023, "tecnica": "Blender render"},
   "3d-illustration/02-orbits.svg": {"titulo": "Orbits", "ano": 2021, "tecnica": "Blender render"},
+  "2d-illustration/01-tree-trunk.jpg": {"titulo": "Layers", "ano": 2022, "tecnica": "Digital illustration"},
   "2d-illustration/02-layers.svg": {"titulo": "Layers", "ano": 2022, "tecnica": "Digital illustration"},
   "2d-illustration/03-waves.svg": {"titulo": "Waves", "ano": 2021, "tecnica": "Digital illustration"}
 }
